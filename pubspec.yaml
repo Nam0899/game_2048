@@ -15,11 +15,19 @@ dependencies:
   flutter_launcher_icons: ^0.14.4
   flutter_native_splash: ^2.4.0
   flutter_svg: ^2.2.0
+  uuid: ^3.0.6
+  flutter_swipe_detector: ^2.0.0
+  hive: ^2.1.1
+  hive_flutter: ^1.1.0
+  json_annotation: ^4.5.0
+  flutter_riverpod: ^1.0.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  build_runner: ^2.1.11
+  json_serializable: ^6.2.0
 
 flutter:
 
@@ -28,3 +36,17 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+  fonts:
+    - family: PatrickHand
+      fonts:
+        - asset: assets/fonts/PatrickHand-Regular.ttf
+    - family: FiraMono
+      fonts:
+        - asset: assets/fonts/FiraMono-Bold.ttf
+        - asset: assets/fonts/FiraMono-Medium.ttf
+        - asset: assets/fonts/FiraMono-Regular.ttf
+    - family: Rowdies
+      fonts:
+        - asset: assets/fonts/Rowdies-Bold.ttf
+        - asset: assets/fonts/Rowdies-Light.ttf
+        - asset: assets/fonts/Rowdies-Regular.ttf
