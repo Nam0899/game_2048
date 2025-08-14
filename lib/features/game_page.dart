@@ -77,17 +77,13 @@ class _GamePageState extends ConsumerState<GamePage>
 
   @override
   Widget build(BuildContext context) {
-    return KeyboardListener(
-      autofocus: true,
-      focusNode: FocusNode(),
-      onKeyEvent: (event) {
-        if (ref.read(boardManager.notifier).onKey(event)) {
-          _moveController.forward(from: 0.0);
-        }
-      },
-      child: SwipeDetector(
-        onSwipe: (direction, offset) {
-          if (ref.read(boardManager.notifier).move(direction)) {
+    return PopScope(
+      canPop: false,
+      child: KeyboardListener(
+        autofocus: true,
+        focusNode: FocusNode(),
+        onKeyEvent: (event) {
+          if (ref.read(boardManager.notifier).onKey(event)) {
             _moveController.forward(from: 0.0);
           }
         },
@@ -106,7 +102,7 @@ class _GamePageState extends ConsumerState<GamePage>
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
-                          fontSize: 52,
+                          fontSize: 46,
                           fontFamily: 'Rowdies'),
                     ),
                     Column(
@@ -115,9 +111,10 @@ class _GamePageState extends ConsumerState<GamePage>
                       children: [
                         const ScoreBoardWidget(),
                         const SizedBox(
-                          height: 16,
+                          height: 12,
                         ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             ButtonWidget(
                               onPressed: () {
@@ -126,7 +123,7 @@ class _GamePageState extends ConsumerState<GamePage>
                               icon: Icons.undo_rounded,
                             ),
                             const SizedBox(
-                              width: 16,
+                              width: 10,
                             ),
                             ButtonWidget(
                               onPressed: () {
@@ -144,13 +141,20 @@ class _GamePageState extends ConsumerState<GamePage>
               const SizedBox(
                 height: 30,
               ),
-              Stack(
-                children: [
-                  const EmptyBoardWidget(),
-                  TileBoardWidget(
-                      moveAnimation: _moveAnimation,
-                      scaleAnimation: _scaleAnimation)
-                ],
+              SwipeDetector(
+                onSwipe: (direction, offset) {
+                  if (ref.read(boardManager.notifier).move(direction)) {
+                    _moveController.forward(from: 0.0);
+                  }
+                },
+                child: Stack(
+                  children: [
+                    const EmptyBoardWidget(),
+                    TileBoardWidget(
+                        moveAnimation: _moveAnimation,
+                        scaleAnimation: _scaleAnimation)
+                  ],
+                ),
               )
             ],
           ),

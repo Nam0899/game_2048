@@ -18,7 +18,7 @@ class ScoreBoardWidget extends ConsumerWidget {
           score: '$score',
         ),
         const SizedBox(
-          width: 8,
+          width: 6,
         ),
         ScoreWidget(
           label: 'Best',
